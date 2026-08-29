@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Love Story ✦ A Private Journal</title>
+
+    <!-- Google Fonts for romantic typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Dancing+Script:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ═══════════════════════════════════════════════════════════════
+           🎨  CSS — ALL STYLING IS HERE
+           ═══════════════════════════════════════════════════════════════ */
+
+        /* ─── CSS Variables ─── */
+        :root {
+            --bg-deep: #0a0a14;
+            --bg-card: rgba(255, 248, 240, 0.04);
+            --bg-card-hover: rgba(255, 248, 240, 0.07);
+            --border-gold: rgba(212, 175, 55, 0.35);
+            --border-gold-bright: rgba(212, 175, 55, 0.6);
+            --text-cream: #f0e6d3;
+            --text-muted: #c4b5a0;
+            --text-warm: #e8c5a0;
+            --accent-gold: #d4a574;
+            --accent-rose: #e8b4b8;
+            --accent-deep-rose: #c98895;
+            --star-color: #ffffff;
+            --shadow-card: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 60px rgba(212, 175, 55, 0.05);
+            --shadow-card-hover: 0 20px 55px rgba(0, 0, 0, 0.6), 0 0 80px rgba(212, 175, 55, 0.12);
+            --font-script: 'Great Vibes', cursive;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Cormorant Garamond', serif;
+            --font-decorative: 'Dancing Script', cursive;
+            --radius-card: 16px;
+            --radius-badge: 40px;
+            --transition-smooth: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* ─── Reset & Base ─── */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-deep);
+            color: var(--text-cream);
+            line-height: 1.7;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* ─── Custom Scrollbar ─── */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-deep);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-gold);
+            border-radius: 10px;
+            transition: background 0.3s;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-gold);
+        }
+
+        /* ─── Canvas Background ─── */
+        #star-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ─── Decorative Floating Hearts ─── */
+        .floating-heart {
+            position: fixed;
+            font-size: 1.2rem;
+            color: rgba(232, 180, 184, 0.25);
+            pointer-events: none;
+            z-index: 1;
+            animation: floatUp linear infinite;
+            user-select: none;
+        }
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(50vh) scale(1) rotate(20deg);
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.2;
+            }
+            100% {
+                transform: translateY(-10vh) scale(0.3) rotate(40deg);
+                opacity: 0;
+            }
+        }
+
+        /* ─── Password Overlay ─── */
+        #password-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a14 70%, #050510 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+            padding: 20px;
+        }
+        #password-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .lock-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            animation: pulse-lock 2.5s ease-in-out infinite;
+            color: var(--accent-gold);
+        }
+        @keyframes pulse-lock {
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.12);
+                opacity: 1;
+            }
+        }
+
+        .lock-title {
+            font-family: var(--font-script);
+            font-size: 2.8rem;
+            color: var(--text-cream);
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .lock-subtitle {
+            font-family: var(--font-body);
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-style: italic;
+            letter-spacing: 0.5px;
+        }
+
+        .password-input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1.5px solid var(--border-gold);
+            border-radius: 50px;
+            padding: 0.45rem 0.5rem 0.45rem 1.5rem;
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .password-input-wrapper:focus-within {
+            border-color: var(--border-gold-bright);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .password-input-wrapper input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-cream);
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+            width: 200px;
+            padding: 0.4rem 0;
+        }
+        .password-input-wrapper input::placeholder {
+            color: rgba(196, 181, 160, 0.5);
+            letter-spacing: 2px;
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+
+        .password-submit-btn {
+            background: var(--accent-gold);
+            color: var(--bg-deep);
+            border: none;
+            border-radius: 50px;
+            padding: 0.6rem 1.6rem;
+            font-family: var(--font-heading);
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            white-space: nowrap;
+        }
+        .password-submit-btn:hover {
+            background: #e8c5a0;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+        .password-submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .password-error {
+            color: var(--accent-deep-rose);
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-top: 1rem;
+            min-height: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.4s;
+            letter-spacing: 0.5px;
+        }
+        .password-error.show {
+            opacity: 1;
+        }
+
+        /* ─── Main Content ─── */
+        .main-content {
+            position: relative;
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 1s ease 0.3s;
+        }
+        .main-content.visible {
+            opacity: 1;
+        }
+
+        /* ─── Hero Section ─── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .hero-heart-top {
+            font-size: 2rem;
+            color: var(--accent-rose);
+            opacity: 0.6;
+            animation: pulse-heart 3s ease-in-out infinite;
+            margin-bottom: 1rem;
+        }
+        @keyframes pulse-heart {
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.9;
+            }
+        }
+
+        .hero-title {
+            font-family: var(--font-script);
+            font-size: clamp(2.5rem, 7vw, 5.5rem);
+            color: var(--text-cream);
+            font-weight: 400;
+            letter-spacing: 2px;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 60px rgba(212, 175, 55, 0.3), 0 0 120px rgba(212, 175, 55, 0.1);
+            animation: title-glow 3s ease-in-out infinite alternate;
+        }
+        @keyframes title-glow {
+            0% {
+                text-shadow: 0 0 30px rgba(212, 175, 55, 0.25), 0 0 60px rgba(212, 175, 55, 0.08);
+            }
+            100% {
+                text-shadow: 0 0 50px rgba(212, 175, 55, 0.45), 0 0 100px rgba(212, 175, 55, 0.15);
+            }
+        }
+
+        .hero-divider {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 1rem 0 0.75rem;
+        }
+        .hero-divider-line {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--accent-gold), transparent);
+        }
+        .hero-divider-heart {
+            font-size: 1.2rem;
+            color: var(--accent-rose);
+            animation: pulse-heart 2s ease-in-out infinite;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-decorative);
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            color: var(--text-warm);
+            font-weight: 400;
+            letter-spacing: 2px;
+            font-style: italic;
+            margin-bottom: 2rem;
+            opacity: 0.85;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        .hero-stat {
+            text-align: center;
+        }
+        .hero-stat-number {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            display: block;
+        }
+        .hero-stat-label {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.6;
+            animation: bounce-hint 2s ease-in-out infinite;
+        }
+        .scroll-hint-arrow {
+            font-size: 1.3rem;
+            color: var(--accent-gold);
+        }
+        @keyframes bounce-hint {
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-8px);
+            }
+        }
+
+        /* ─── Stories Section ─── */
+        .stories-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 24px 80px;
+            position: relative;
+        }
+
+        .stories-section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .stories-section-header h2 {
+            font-family: var(--font-script);
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--text-cream);
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        .stories-section-header p {
+            font-family: var(--font-body);
+            color: var(--text-muted);
+            font-style: italic;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* ─── Timeline Line ─── */
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 120px;
+            bottom: 80px;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--border-gold) 5%, var(--border-gold) 95%, transparent);
+            z-index: 1;
+            opacity: 0.6;
+        }
+        @media (max-width: 640px) {
+            .timeline-line {
+                left: 25px;
+                top: 80px;
+            }
+        }
+
+        /* ─── Story Card ─── */
+        .story-card {
+            position: relative;
+            z-index: 5;
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: var(--radius-card);
+            padding: 2.5rem 2.5rem 2.2rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: var(--transition-smooth);
+            opacity: 0;
+            transform: translateY(40px);
+            animation: card-appear 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .story-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-gold-bright);
+            box-shadow: var(--shadow-card-hover);
+            transform: translateY(-4px);
+        }
+        @keyframes card-appear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Stagger animation delay for each card */
+        .story-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+        .story-card:nth-child(2) {
+            animation-delay: 0.25s;
+        }
+        .story-card:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        .story-card:nth-child(4) {
+            animation-delay: 0.55s;
+        }
+        .story-card:nth-child(5) {
+            animation-delay: 0.7s;
+        }
+        .story-card:nth-child(6) {
+            animation-delay: 0.85s;
+        }
+        .story-card:nth-child(7) {
+            animation-delay: 1s;
+        }
+        .story-card:nth-child(8) {
+            animation-delay: 1.15s;
+        }
+        .story-card:nth-child(9) {
+            animation-delay: 1.3s;
+        }
+        .story-card:nth-child(10) {
+            animation-delay: 1.45s;
+        }
+
+        /* Card decorative corner */
+        .story-card::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            width: 40px;
+            height: 40px;
+            border-top: 2px solid var(--accent-gold);
+            border-left: 2px solid var(--accent-gold);
+            border-radius: var(--radius-card) 0 0 0;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        .story-card::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            width: 40px;
+            height: 40px;
+            border-bottom: 2px solid var(--accent-gold);
+            border-right: 2px solid var(--accent-gold);
+            border-radius: 0 0 var(--radius-card) 0;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        /* Card date badge */
+        .story-date-badge {
+            display: inline-block;
+            font-family: var(--font-decorative);
+            font-size: 1.05rem;
+            color: var(--text-warm);
+            background: rgba(212, 175, 55, 0.12);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: var(--radius-badge);
+            padding: 0.35rem 1.4rem;
+            letter-spacing: 1.5px;
+            margin-bottom: 1.25rem;
+            transition: var(--transition-smooth);
+        }
+        .story-card:hover .story-date-badge {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+
+        /* Card title */
+        .story-title {
+            font-family: var(--font-heading);
+            font-size: 1.7rem;
+            font-weight: 600;
+            color: var(--text-cream);
+            letter-spacing: 0.5px;
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+            position: relative;
+            display: inline-block;
+        }
+        .story-title::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(to right, var(--accent-gold), transparent);
+            border-radius: 2px;
+            transition: width 0.5s ease;
+        }
+        .story-card:hover .story-title::after {
+            width: 100%;
+        }
+
+        /* Card quote mark decoration */
+        .story-quote-mark {
+            font-family: var(--font-script);
+            font-size: 3rem;
+            color: var(--accent-gold);
+            opacity: 0.35;
+            line-height: 1;
+            margin-bottom: -0.5rem;
+            user-select: none;
+        }
+
+        /* Card content */
+        .story-content {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            color: var(--text-cream);
+            line-height: 1.85;
+            letter-spacing: 0.3px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            opacity: 0.9;
+        }
+
+        /* Card number badge */
+        .story-number {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.5rem;
+            font-family: var(--font-heading);
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            opacity: 0.5;
+            user-select: none;
+        }
+
+        /* Card heart icon */
+        .story-heart-icon {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--accent-rose);
+            opacity: 0.4;
+            transition: opacity 0.4s, transform 0.4s;
+            cursor: default;
+            user-select: none;
+        }
+        .story-card:hover .story-heart-icon {
+            opacity: 0.8;
+            transform: scale(1.15);
+        }
+
+        /* Timeline node on the line */
+        .story-card .timeline-node {
+            position: absolute;
+            left: -31px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.6), 0 0 30px rgba(212, 175, 55, 0.3);
+            z-index: 6;
+        }
+        .story-card .timeline-node::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            animation: node-pulse 2.5s ease-in-out infinite;
+        }
+        @keyframes node-pulse {
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.5);
+                opacity: 0;
+            }
+        }
+        @media (max-width: 640px) {
+            .story-card .timeline-node {
+                left: -17px;
+            }
+        }
+
+        /* ─── Footer ─── */
+        .footer {
+            text-align: center;
+            padding: 3rem 20px 4rem;
+            position: relative;
+            z-index: 5;
+            border-top: 1px solid rgba(212, 175, 55, 0.15);
+            margin-top: 1rem;
+        }
+        .footer-heart {
+            font-size: 1.8rem;
+            color: var(--accent-rose);
+            animation: pulse-heart 2.5s ease-in-out infinite;
+            display: block;
+            margin-bottom: 0.75rem;
+        }
+        .footer-text {
+            font-family: var(--font-decorative);
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            font-style: italic;
+        }
+        .footer-subtext {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: rgba(196, 181, 160, 0.6);
+            margin-top: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        /* ─── Back to Top Button ─── */
+        #back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 100;
+            background: rgba(212, 175, 55, 0.2);
+            border: 1.5px solid var(--border-gold);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+            transition: var(--transition-smooth);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        #back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+        #back-to-top:hover {
+            background: rgba(212, 175, 55, 0.35);
+            border-color: var(--border-gold-bright);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.25);
+        }
+
+        /* ─── Responsive Design ─── */
+        @media (max-width: 768px) {
+            .story-card {
+                padding: 1.8rem 1.5rem 1.6rem;
+                margin-bottom: 2.2rem;
+            }
+            .story-title {
+                font-size: 1.4rem;
+            }
+            .story-content {
+                font-size: 1rem;
+            }
+            .hero-stats {
+                gap: 1.5rem;
+            }
+            .hero-stat-number {
+                font-size: 1.5rem;
+            }
+            .lock-title {
+                font-size: 2rem;
+            }
+            .password-input-wrapper input {
+                width: 140px;
+                font-size: 1rem;
+            }
+            .password-submit-btn {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.85rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .story-card {
+                padding: 1.5rem 1.2rem 1.3rem;
+                border-radius: 12px;
+            }
+            .story-date-badge {
+                font-size: 0.9rem;
+                padding: 0.25rem 1rem;
+            }
+            .story-title {
+                font-size: 1.25rem;
+            }
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            .lock-title {
+                font-size: 1.7rem;
+            }
+            .password-input-wrapper {
+                flex-direction: column;
+                border-radius: 20px;
+                padding: 1rem;
+                gap: 0.5rem;
+                align-items: stretch;
+                text-align: center;
+            }
+            .password-input-wrapper input {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         🌌  CANVAS BACKGROUND — STARS & PARTICLES
+         ═══════════════════════════════════════════════════════════════ -->
+    <canvas id="star-canvas"></canvas>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         🔒  PASSWORD OVERLAY — GATE TO YOUR PRIVATE STORIES
+         ═══════════════════════════════════════════════════════════════ -->
+    <div id="password-overlay">
+        <div class="lock-icon">🔐</div>
+        <h1 class="lock-title">Our Private Journal</h1>
+        <p class="lock-subtitle">Only for us · Enter your secret password</p>
+        <div class="password-input-wrapper">
+            <input type="password" id="password-input" placeholder="••••••••" maxlength="30" autocomplete="off">
+            <button class="password-submit-btn" id="password-submit">Unlock ♥</button>
+        </div>
+        <p class="password-error" id="password-error">That's not the right password, try again ♥</p>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         📖  MAIN CONTENT — THE LOVE STORY
+         ═══════════════════════════════════════════════════════════════ -->
+    <div class="main-content" id="main-content">
+
+        <!-- ─── Hero Section ─── -->
+        <header class="hero">
+            <div class="hero-heart-top">✦ ♥ ✦</div>
+            <h1 class="hero-title" id="hero-title">Our Love Story</h1>
+            <div class="hero-divider">
+                <div class="hero-divider-line"></div>
+                <span class="hero-divider-heart">♥</span>
+                <div class="hero-divider-line"></div>
+            </div>
+            <p class="hero-subtitle" id="hero-subtitle">Every moment with you is worth remembering</p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-number" id="total-stories">0</span>
+                    <span class="hero-stat-label">Stories</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">∞</span>
+                    <span class="hero-stat-label">Memories</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">♥</span>
+                    <span class="hero-stat-label">Forever</span>
+                </div>
+            </div>
+            <div class="scroll-hint">
+                <span>Scroll to read</span>
+                <span class="scroll-hint-arrow">↓</span>
+            </div>
+        </header>
+
+        <!-- ─── Stories Section ─── -->
+        <section class="stories-section" id="stories-section">
+            <div class="stories-section-header">
+                <h2>Our Chapters</h2>
+                <p>Each one a precious memory I never want to forget</p>
+            </div>
+            <div class="timeline-line"></div>
+            <div id="stories-container">
+                <!-- Story cards will be injected here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- ─── Footer ─── -->
+        <footer class="footer">
+            <span class="footer-heart">♥</span>
+            <p class="footer-text" id="footer-text">To be continued… forever and always</p>
+            <p class="footer-subtext">✦ Private journal · Made with love ✦</p>
+        </footer>
+
+    </div>
+
+    <!-- ─── Back to Top Button ─── -->
+    <button id="back-to-top" aria-label="Back to top">↑</button>
+
+    <!-- ─── Floating Hearts Container ─── -->
+    <div id="floating-hearts-container"></div>
+
+    <script>
+        /* ═══════════════════════════════════════════════════════════════
+           ✏️  EDIT YOUR STORIES HERE — FOLLOW THE INSTRUCTIONS CAREFULLY
+           ═══════════════════════════════════════════════════════════════
+        
+           HOW TO ADD A NEW STORY:
+           
+           1. Look at the first entry below (the one that says "The First Hello").
+           2. Copy the entire block from the `{` to the `},` (including the comma).
+           3. Paste it right after the last story entry (before the closing `];`).
+           4. Change the date, title, and content.
+           5. IMPORTANT: Make sure to keep the commas and brackets exactly as shown!
+        
+           RULES:
+           • Your story text goes between the backtick marks: `  `  (the key above Tab)
+           • You can write multiple lines/paragraphs between the backticks
+           • Don't use the backtick character ( ` ) inside your story text
+           • If you use an apostrophe, that's fine (' or ')
+           • Each story entry ends with `},`  — the comma is REQUIRED except for the last one
+           • The last story entry should NOT have a comma after it
+        
+           ================================================================ */
+
+        // ─── CONFIGURATION (change these!) ───
+        const YOUR_PASSWORD = "Pragya ❤️‍🩹"; // ← CHANGE THIS to your secret password
+        const HERO_TITLE = "Our Love Story"; // ← CHANGE THIS to your title
+        const HERO_SUBTITLE = "Every moment with you is worth remembering"; // ← CHANGE THIS
+        const FOOTER_TEXT = "To be continued… forever and always"; // ← CHANGE THIS
+
+        // ─── YOUR STORY ENTRIES (add/edit below) ───
+        const loveStories = [{
+            date: "17 February, 2026",
+            title: "1st Board Exam",
+            content: `ALL THANKS TO THOSE MISCHIEVOUS CLASSMATES OF MINE, WHO MADE IT POSSIBLE FOR ME TO ARRIVE AND LEAVE THE EXAM CENTRE ON MY OWN AND NOT FROM ANY SCHOOL BUS!
+My class 10th boards had started. I was genuinely clueless that at the time when all students stress for exams, my stress would be for anything else. 
+
+17th Feb, My first exam was maths, we arrived from bus,  nothing special. I gave exam, Exam took mine 💀. 
+`,
+        }, {
+            date: "21 February, 2026",
+            title: "2nd Board Exam",
+            content: `21st Feb, Second exam, English. Same bus took us to exam centre again, but this time, when i was chilling out with my friends outside the centre, I saw her, i took some time to process, it was the girl which was my old classmate and only female bestfriend of my life (class 3rd and 4th). She also saw me, Meri fat ke chaar hui, I withdrew my eyes. Ab ye baat mere dimag me baith gyi thi, my eyes started looking for her everywhere. Ham centre ke andar gaye, my eyes just stuck to her. I dont fucking know what I was feeling but yeah!
+`,
+        }, {
+            date: "25 February, 2026",
+            title: "Pahli Nazar",
+            content: `25th February, Third Exam (Science), My school management said that due to the intolerable activities of some students, the bus will only take those students to exam centre who pay for it (old customers lol). This was the phenomena that changed my life (quite a bit). Honestly I had forgot about her, after all she had not shown any interest in me that day. This time I saw her, she also saw me and we locked eye contact. Mere g se khoon nikal gya lol aur mai fir gandu ke tarah hat gaya waha se. Then what happened changed everything, is wajah se mere dimaag se nahi utar rahi wo. Paper dene ke baad me exam centre se nikla, aur apne doston ke saath jaane laga, wo mere aage aage chal rahi thi (coincidentally). I had observing her from the very back when we were walking, she was definitely will looking for someone. When I reached closer to her she saw me and then immediately turned forward, she started telling her friends and pointed towards me. I know something happened at that time. But she went away, as I was busy with my some motherfucker friends. 
+`,
+        }, {
+            date: "27 February, 2026",
+            title: "Initial Efforts",
+            content: `27th February: My fourth Exam (IT). I reached the centre, saw her sitting with her friends in the ground at the other side (girls area). She was staring at me. I stared at her. We gave papers, left the centre. Again that staring session started. In the last paper, nothing serious had happened. Although it was extremely abnormal for me, no girl had ever looked at me that way, or did any if the things that she did. But wo mud mud kar dekhti rahi. I was dead serious, ni expressions at all. At the trisection, she continued walking towards the left road (ghar ki taraf ka rasta) while i headed towards my friends (right side). I thought it was nothing as serious. But waha par wo mujhe dhundhti hui, apni speed dheeme kar chuki thi. Mai bakchodi karke waha se nikla, and saw her standing there and talking with ger friends. I told gaywa (he knew less initially but i told him more and more about her with time). Mujhe dekhte hi wo chalne lagi aage aage, aur jo wo baar baar tirchhi nazar se mudkar dekh rahi thi wo to .... 💀💀💀💀💀. Fir thodi door tak uske peeche chalta raha, mai use nahi dekh raha thaz gaywa bata raha tha ki ab dekhi, ab dekhi aur bhaisaab meri halat bigadti hi jaa rahi thi. Fir mai tez tez chalkar uske bagal tak pahuncha aur fir usse aage nikal gaya. Speed badha kar ek dukaan par pahuncha, us dukaan se khade hokar use dekhne laga. Usne ek mauka nahi chhoda mujhe dekhne ka. Dekhti hi rahi, but she took the other way, at the santoshi mata temple, with her friends and went home by an e rickshaw. AB suno: mai gaywa ke saath rickshaw me baith gaya, mai uske baare me hi soch raha tha, ki tab tak wo mujhe mlk pg college se andar jaane wale raste par andar jaati hui dikhi. Mera dimaag chala aur mujhe realise hua, maine gaywa ko bataya ki she still thinks that i live in city palace yaani meri nani ka ghar. Thats why she was going there warna uske ghar ka to waha koi ata pata nahi tha she lived in sisai. Also, gaywa was confused ki mai konsi ladki ke baare me baat kar raha hu he thought uske saath jo ladki chal rahi hai wohi hai meri wali. Usne bataya mai jaanta hu "Rashi" ko mai bola Rashi?? Wo kon?? Mujhe laga uske ghar ka naam Rashi hoga. Gaywa ne bataya uske papa army me the aur death ho gyi. BC mujhe laga shaadi se pahle mera sasur nipat gaya. (Btw salute to him). Par baad me agle din pata chala it was not her. 
+`,
+        }, {
+            date: "2 March, 2026",
+            title: "Expression Of Love",
+            content: `2nd March (Fifth Examination): Aaj mera hindi ki exam tha. Speaking honestly mujhe apne poore board exam me ek second ke liye bhi apne paper ki chinta nahi hui, ekdam bhi nahi. Balki mai to us baare me sochta hi nahi thi kabhi, all I though of was her. Subah papa centre chhodne gaye, gaywa ke saath mai idhar udhar ghooma, use dhundhte hue, but last me pata hai kya hua!! Mere saamne ek Maruti Suzuki Swift Dzire (discontinued model 2017 - 2020) Grey color- UP32------- ( I was unable to see the whole registration plate). She sat quietly inside her car and watched me while i lost consciousness lol. Paper ka time hua tab ham andar gaye, waha bhi prayer ke liye line lagi, to wo mere paas aane ki koshish kari but uske school ki line alag thi, although we saw each other. Paper achha hua, bahar aane ke baad. Mere dimaag completely confused tha, pata nhi wo sirf curious hai ya sach me pasand karti hai, ya fir aisa bhi ho sakta hai ki bas maza le rahi hai apne doston ke saath milkar. Ye sab thoughts ke saath mai bahar nikla, use dhundhte hue. Baaki madarchodon (doston) ko peeche chodte hue, gaywa ke saath aage aaya. Mai bahut zyada LITERALLY BAHUT ZAYADA RESTLESS THA. idhar udhar aage peeche sab jagah bas use dhundh raha tha. Jab wo kahi nahi mili tab mai gaywa se kaha "DEKHE BHAI KUCHH NAHI THA, FALTU ME CHUTIYA BANA RAHI THI, AGAR SACH ME KUCHH HOTA TO MERE LIYE RUKI HOTI and blah blah blah". Gaywa bola nahi nahi, abbe dekhit hai, (exact words yaar nhi hai but usne pura dilaasa diya aur kaha mai dhundh ke batata hu) aur phir........ Age badhte hi. ............ Mod par, badi wali pani tanki ke neeche, mujhe wo dikhti hai. I WAS FILLED WITH JOY. Bhai ab sach me thoda thoda lagne laga tha ki kuchh ho raha hai pakka. Mai uske bagal se nikla but alsi validation to ab milne wala tha. Jaise hi mai uske aage nikla (wo waha Pani Tanki ke niche Kisi bacche ko khila rahi thi, Koi Jaan pahchan ka aadami tha uske bachhe ko.) mujhe aage jaate Dekhte hi wo mere peeche chalna shuru kar deti hai. Bhai literally us samay mujhe laga ki mere dimaag me koi super serum chali gayi hai, mera dimaag doctor strange ki tarah itni saari possibilities dekhne laga ki likhte likhte haath dard ho jayega. Chhoti se chhoti possibilities jiska connection kisi bhi cheez se ho sakta hai. (Btw jab mai bahut tensed hota hu to aisa aksar hota hai, but this was the first time jab ye super thinking process papa ki wajah se nahi activate hui thi- aksar wohi aisi cheez bolte hain ki mai...☠️) Mai aage badhta gaya, gaywa peeche dekh dekh kar bata raha tha ki mujhe dekh rahi hai ya nhi. She was constantly smiling at me from behind. Mai usi dukaan par rukta hu jispar last time ruka tha but is baar wo dusra raasta nhi leti. Apne saare doston ko bye bolkar, sirf ek dost ke saath usi raste per Gai jis raste Se Main Ghar jata tha. Chaunkane wali baat to yah thi give paidal chal rahi thi rikshaw se nahin. Main cold drink khareed kar dukaan se aage badhta Hun to pata chalta Hai ki vah aage aage paidal hi chal rahi hai. Jaisi Meri nazar uspar pdti hai, Maine dekha ki wo peeche mujhe hi dhoondh rahi thi, mere milta he usne apni dost ko bataya. Mai peeche chal raha tha. (LITERALLY NOW LISTEN THIS: MAI JO FEEL KARTA AA RAHA THA PAST DAYS PAR MAI WO EXPRESS NAHI KAR SAKTA AISI EXTREME FEELING NA PAHLE KABHI HUI THI NA USKE BAAD KABHI HUI, MOREOVER AAJ AUR KAL JO HONE WALA HAI, WO SABKO x1000 KAR DO PHIR BHI KAM HAI.) mai uske peeche tedhe medhe khate hue chal raha tha, aur wo repeatedly mud mud kar dekh rhi thi. Padhte samay ye mudne wali baat बार-बार padhakar irritating lag sakta hai. But jitni baar wo mudti utni baar my heart skipped a beat FR. Gaywa lagtaar kah raha tha bhai kuchh karo bhai kuchh karo bhai kuchh karo lekin bhai bhosdike ek number ke gaanddhusran. Ek baar dekh kar dhang se smile bhi nahi de paya. Chalte chalte fir she took a rickshaw at veer vinay chowk. Waha par for sure 10000% confirmation ho gya. Ab bas kuchh nhi chahiye tha. Pata chal gaya ki pasand karti hai. Rikshe me baith kar, peeche se jhaank kar mujhe dekhi. Peeche coincidence maan sakta hoon but last wala was deadly for sure. 
+YOU EXPRESSED YOUR LOVE THROUGH YOUR EYES THAT DAY`,
+        }, {
+            date: "7 March, 2026",
+            title: "Closest Approach",
+            content: `7 March (Last Exam): Aaj ke din dil me extreme level ka dar, excitement, fomo sab tha. Aaj last day tha, agar aaj kuchh nahi kiya to lifetime regret. Pahli baar koi ladki tumhe saamne se pasnd karti hai jise tum bhi pasand karte ho. Aur wo na tumahre paise dekhti hai, na body. Pure heart ❤️. Centre par pahucha and wo thoda late se aayi. Ham school ke gate ke just baahr khade the. Mai  Apne friends circle main khada tha vah apne friend circle mein khadi Thi. Then we locked in the hardest eye contact of our lives. Fir paper wagerah hone ke baad bahar nikle. And what happened was totally unexpected. I could not find her anywhere. Mai baar baar reverse aaya check karne, dobara aage gaya pani tanki pe ki shayad waha mil jaye par nahi mili. My soul was once again filled with sadness. Bahut bura laga. Gaywa wahi kahta raha ruki mai dhundhta hu etc etc. mai nazrein jhukaakar chalta raha. Achanak se gaywa bola WO HAIIIIIIIIIIIIIII. Then i saw her waiting at a shop at the road intersection at Highway. Same thing happened today too, saath saath chalte chalte ham, kabhi wo aage kabhi mai aage. Gaywa ke bahut kahne par mai bhi peeche mud mud kar use dekhne laga, for her to understand thatci like her too. Fir ham vv chowrahe tak pahuche. Fir mujhe hit kiya ki kahi wo firse chali na jaye, to mai fatak se aage badhkar road cross kar liye. Thank god, wo waha par ruki thi auto ke liye, but mujhe aage jaate hue dekh kar vah bhi mere piche piche aane lagi. When she was crossing, she was facing difficulties i noticed, i thought i should help but my introvert ass froze my body. Aage ham jab Ambedkar tirahe par pahuche, to mujhe laga - ki kahin wo ye Na soche ki Main andar jaunga, kyunki Mera Ghar City palace per hai. Aur mera shak Sahi nikala, vo mudne wali thi, but FIR main Sahi time par usse aage nikal gaya.  Fir bhai..... Tum manogay nahi, ham st. Xaviers se chalkar kaali thaan par pahuch gaye. Approx 4kms aur wo bhi paidal. Maze ki baat to ye ki na time ka pata chala na pairon me dard ka 🙃. I tried so many times to talk but i couldnt. Now we reached mlk pg college. Waha maine ek final test lene ka soche jisse 1,000,000% confirmation mil jayegi, mai waha par road cross karke ek dukaan pr gaya. Mere road cross karte hu wo bhi road ke ussi side aa gyi but dusri dukaan me chali gayi. Gaywa fueled me up - Jao aur mere liye centre fresh lekar aao. I asked for all the strength that mightly lords could offer. Mai uske just peeche khada tha. Behenchod just peeche. Use pata nhi chala jab tak maine bola nhi ki bhaiya cf dedo. Then, usne mujhe notice kiya, aur achanak se out of excitement wohi apni dost ka haath pakad kar koodne lagi. She was excited asf. Mai confirm to ho gaya but ab karu kya. Fir ek banda aata hai bike par jo use jaanta tha, usse kahta hai ki chalo ghar, wo apne ghar ke aadmi ko mana karke kahti nahi hum ispe nahi jayenge. Like literally! Mai to bada khush hua ki mere liye nahi gayi, lekin fir 2 min baad rickshaw me baith kar chali gayi. The only words I could say was "Laude Lag Gaye" twice. I was broken completely. Went home. Uske baad mai use bhool nhi paya
+`,
+        },{
+            date: "Post Exam Condition🤒",
+            title: "Secretly Depressed",
+            content: `7 march ke baad literally ek din bhi aisa nhi tha jab maine uske baare me nahi socha. Har din har din har din. Jab bhi bhar nikalta, ek saanvli ladki jo chashma lagati hai, usi ko dhundhta rahta har waqt. Pahle sochta tha ki balrampur kitna hi bada hai, mil hi jayegi kahi na kahi. Par mahinon tak koi ata pata nahi tha. Mai bechaini se mar raha tha. Par koi expression nhi kabhi bhi. Ek din gaywa bataya ki bijlipur mandir me dikhi thi use, but i assume it was largely fake.ek last ummeed thi.... Second board ka jab form bhara tha, sirf ek Hi khwahish thi ki wo mil jaye... ❤️. Is bar Main kafi himmat juta chuka tha ki is bar opportunity miss nahin hone dunga. Bahut besabri se 15 May ka intezar tha mujhe. Bahut sare doubts the dimag mein, sab kuchh clear Ho Gaya examination ke din. 
+`,
+        },{
+            date: "15 May, 2026",
+            title: "The Second Chance",
+            content: `15 May: First 2nd board exam (Maths). Main usi purane centre pahuncha, itna Khatarnak nostalgia hit hua ki kya batau. Maine pahle Se Hi gaywa ko bol Rakha tha, ki jaldi a Jana aur mere sath rahana pure time. Lekin vo bhosdi wala, ek to late mein aaya, aur donon din jaldi Chala Gaya, Apne papa ke sath. Yani ki Main akele lauta. Khair. Main ghoom tahal Raha tha, Apne purane doston Se mil raha tha, tabhi gayva bhi aa jata hai. Main bahut der tak wait Karta Raha, par vo mujhe kahin nahin dikhi. Mujhe yakin ho gaya tha ki ab mai Puri jindagi regret ke alava aur kuchh nahin kar paunga. But Achanak se use bheed mein, mujhe ek chehra dikhai Diya. It was HER..... ❤️. I was excited asf. I mustered up all the courage. Bheed mein धीरे-धीरे badhate hue, voh mere just aage aakar ke khadi ho gayi. She wanted to say something, but hamare agal Bagal itne log the ki kuchh kah nahin pai. Ham center ke andar ghuse, exam Diya aur fir bahar aa gaye. Jab mai bahar nikla to wo bhi apni classroom ke bahar khadi hui thi, mujhe dekhte hi aage badh gayi. We followed as always. But uske baad wo apni friends ke saath rickshaw me baith kar chali gayi. Like literally, no eye-contact nothing. She just sat and went away like it was nothing. I was deeply saddened, I knew I have no more than few minutes in total, over 2 fucking days. Usme se bhi wo pahle din chali gayi. Mai ekdam zombie ho gaya us samay ke liye, na kuchh bol paya, na kuchh soch paya, na kuchh mahsoos ho raha tha except the extreme sunlight lol. Gaywa had already gone with his father, I was working towards home with Aditya. He was accompanying me in the opposite direction, he had to go the other way. I walked some distance with him so that he does not feel bad. And then I haulted rickshaw for him, and he went away too. I walked for a while but then I too took a rickshaw. Now.... Jaise hi mai us mlk wale spot par pahucha I saw her and her friend. They had stepped off, and stopped there. This implies that, she didn't ditch me. Maybe she was obliged or something? Okay, back to the moment: as soon as she saw me, she started to laugh loudly pointing towards me and i was confused asf. Maybe she was making fun of me and teasing me idk. Pahle maine socha ki utar ke baat kar lu isi bahane ki has kyu rahi ho lekin fir bhi himmat nahi juta paya. (Akele darjan bhar ladkon ko maar leta hu gira gira ke, Duniya me KISI CHEEZ se nahi darta hu siwaay Papa ke par phir bhi.... Bsdk). Mai aage nikal aaya fir apni colony se thoda pahle hi utar gaya. Socha ki wait kar lu, aur atleast hint de du ki yaha rahta hu. Par tab tak vo auto mein baith chuki thi. Usne mujhe dekha FIR Apne rikshe Ko rukvaane ki koshish ki, Maine use slow hote hue dekha lekin FIR aage Chali gai. I again dk what happened. 
+`,
+        }, {
+            date: "17 May, 2026",
+            title: "Betrayal",
+            content: `17 May: Science Exam (2nd Board). Aaj wo centre ke bahar nahi dikhi, andar ground me bhi nahi dikhi. Seedhi chadkar upar gaya to bhi nhi dikhi. Mujhe laga ab bas ho gaya aaj nahi aai hogi. Lekin wo mere classroom ke aagar chakkar kaat rahi thi, mukhe dhundh rahi thi. Aur mai use. Mujhe dekhte hi bhag gayi apni classroom me. Exam achha hua, pel ke cheating karwaya puri class ko ☠️. Classroom se bahar nikla hi tha ki wo staircase ke paas khadi hui thi. Then we locked in 2nd longest eye contact of our lives. Is baar thoda paas se. Usne kasam se itni pyaari smile di ki kya hi batau, I Did the same (Atleast itna to kar paya). Neeche aakar jab mai bahar jaa raha tha tab jeb se mera aadhar card gir gaya. Fortunately wo hi mere peeche chal rahi thi. Usne mujhe bulaya -"Virat! Aadhar Card!!" Bas, fir mai namardon ki trh bina thankyou bole aage chala gaya. Matlab ekdam bsdw hi tha kya mai.  Us din bhi gaywa jaldi chala gaya. Wo mere saath chalti to rahi kaafi door tak. Again pura rasta hi naap diya. Dhoop me uski skin red ho jati thi. Mai peeche se dekh kar muskura raha tha, uske gaal red ho gaye the. Us din itni garmi thi ki last me aate aate wo bahut dheere ho gayi thi. Fir mlk pahuch kar maine peeche mudkar dekha wo nhi thi. Mujhe laga chali gayi. Mai khada raha thodi der, fir auto me baithke jaati hui dikhi. Usne mujhe dekha aur thode aage auto rukwa diya and again dheemi aawaz me mujhe bulaya - "Virat" mai mudke dekhkar react karne hi wala tha ki tab tak uski dost ne auto aage badhwa liya. Pata nhi us madarchodni ko kya chull machi rahti hai mere aur uske beech. Auto aage badha aur wo apna mu chhupa kar chali gayi. Ab mai andar se thanda pad chuka tha. Koi emotions aa nhi rhe the. Dukh aur gussa ek dusre ko neutralise kar rahe the shayad. Ab pata tha ki khel khatam 🥀
+`,
+        },{
+            date: "Random Day",
+            title: "New Hope",
+            content: `5:12PM, random day on july. Mai market jaa raha tha, amdmbedkar tirahe se andar ghusa aur achanak se ekdam door se, EKDAM DOOR SE. Bheed me....................... wo dikh gayi. Mai speed me tha, mera haath aur pair sunn ho gaya. Ek nazar me ek second me pahchan liya maine use. Mai fir scooter ghuma kar ek baar aur gaya to confirm is she was it. And yessss sir! 
+Bhaisab, in an instant i pulled my phone out and took a screenshot of current time. Told gaywa about this. Now imagine, a girl living in sisai, takes admission in a tuition 5kms away from her home. Only for me (my old home). I was moved by her determination. I could never imagine doing any of that, which she did. Mai fir ek aur chakkar marne gaya, this time she saw me but I noticed something unusual all the 3 times when i Saw her. Meri wali always walked on her left side, aur uske right me uski mc dost. But uske peeche peeche ek ladka bhi chal raha tha. Quite close to her. Pahle nazar me laga aise hi jaa raha hoga. Fir second time jab maine use dekha tab wo road cross karke momos khane "Ved Momos" par jaa rahi thi. Uske saath wo bkl bhu road cross karne laga. Aur fir, 3rd time. Wo bkl meri wali, uski dost (abse shortcut me mc bolenge usko: Reason: She should've motivated her to speak first or she could have applied some efforts from her side to help meri wali. + She acted as a resistance wall between us. Aise dost dost kahlane ke layak nhi hote for sure) ek saath momos kha rahe tge and he was paying. There were 2 possibilities, ki wo either one of the girls ka bf tha. Now because he always stood, and walked near "meri wali" i thought ki ye uska bf hai and I was clearly doomed. Mai gusse se samaan lekar ghar chala aaya. Gaywa ko bataya, he also said ki haan maine bhi use ek ladke ke saath mandir me dekha tha which i again assume was largely fake 🤥. Mai baar baar bata raha hu, apni feelings ko express kar pana bahut mushkil hai. To jab bhi ye padhna pause le lekar padhna aur yaad karte rahna. 
+`,
+        },{
+            date: "Thoughts Afterwards",
+            title: "Result Of Overthinking",
+            content: `Ab mujhe lagne laga ki wo Dynamic Coaching me padhti hai kyuki whi mere purane ghar ke sabse paas me hai. I decided ki mai jab bhi jaunga 4:50 par niklunga aur 5:00 tak pahunch jaunga. Then I'll get to see her. 
+`,
+        },{
+            date: "Somedays Afterwards",
+            title: "Grace Of God",
+            content: `Mai almost roz kisi na kisi bahane se jaane laga. Kabhi kabhi to gaywa ko bhi bula leta tha. Kai din tak lagataar jaata raha. To wo nhi milti thi
+
+Ek din gaywa ko bulaya aur ek aur try mara, is baar surya public school ke aage same time par jaate hue dikhi. Maine use almost 100m door se hi dekhliya. Uske paad jakar speed dheemu kari, fir usne mujhe dekhkar aisi smile di ki meri haalat bilkul srk ke is meme ki tarah ho gayi 👇
+
+https://share.google/iQpbugQf2LiLitYjJ
+
+(Dil pe haath)
+
+Fir mai ghoom kar wapis aaya, wo bkl fir se dikh gaya. Pure dimaag ka bhang bhosada ho gaya. Mai gaywa ko bataya use bhi laga ki haan meri wali ka hi bf hai. To firse mai wapis chala aaya.
+
+Yaha ek baat notice karo, gussa hone ke bawajood mai ek bhi din mauka nahi chhodta tha 5 baje jaane ka.And yeah i know i should have remembered those dates. But I couldn't.
+
+Uske baad ek din fir se mai gaywa ke saath jaata hu. Mai andar jaate gaya aur wo nahi dikhi, fir achanak se mere Bagal se auto riksha nikla, jiske andar mujhe aisa Aisa hua ki wo baithi hai. Par Maine itna Dhyan nahin diya aur Main aage chalta Gaya. Jab wo nahin dikhi, tumhen socha ki yah market se Saman lekar wapas chalte Hain, par gaywa bola ki ek round aur. Fir jaise hi me dobara ved momos par pahuchta hu waha mujhe peeche se ek green bag dikha. Mai aage jakar ek dukaan par ruk gaya aur waha kuchh samaan lene ruk gaya ye sochkar ki wo aayegi tab baat ho jayegi. But wo nahi aayi. Aur vo bkl mehra bhi bahut raha tha, maine gaywa se kaha ki tum confirm karogi yah bkl Hai kiska. Usne video vagaira Banakar yah confirm kar diya ki vo bkl Mc ka tha. Also gaywa ne bataya ki jab wo waha tha tab meri wali already jaa chuki thi, most probably mujhe market ki taraf jaate dekh kar wo bhi chali aayi ho mere liye bcoz jab wo bkl aur mc auto me baithe to unhone kaafi der tak wait kiya uska. But I didnt wait. Clearly My fault. 
+`,
+        },{
+            date: "Next Incident",
+            title: "Ved Momos",
+            content: `Is baar to mai seedhe uske bagal me hi ghus gaya. Wo momos kha rahi thi, maine khane ki bajay pack karne ko bola ghar ke liye. Wo mujhe mc ke peeche se chup chup kar dekh rahi thi. Maine bhi dekhna chaha but wo chhup rahi thi. Kuchh ho nahi paya us din bhi. 🙆
+`,
+        },{
+            date: "29 August, 2026",
+            title: "Tried My Best 🫣",
+            content: `Today when i am writing this: 29th August 2026. Aaj Gaywa ka wifi wala kaand hua. Use sort karke mai nikla ek aur try maarne. Aur is baar surya ke age SBI atm ke paas dikhi. Usne mujhe dekha but maine is baar ignore kar diya. Kyuki us bkl se mujhe chidh hai. Gaywa roz bolta hai chalo use pel diya jaye😂. Fir mai bade pul ke andar se ghoom kar nikla, but is baar wo jaane ke mood me nahi thi. BHAIIIIIII WO AAJ KASAM SE JAANE KE MOOD ME NAHI THI BINA BAAT KIYE. ek baar aage gayi, fir laut ke wapis aayi aur surya ke bahar hi khadi ho gayi. Mai ek chakkar gaya- Eye contact successful ✅. Dusre chakkar, opposite side se lagaya to kuchh khaas nahi. 3rd round---> She was clearly upset with me. Aaj pahli baar itne gaur se dekh paya. Bahut pyari lag rahi thi tum.  Fir papa ka phone aa gaya ☠️💀☠️💀☠️💀. Papa ke dar se scooter side me lagakar phone uthaya aur baat kiya, aaj vipassana khatam hone wala tha. Fir maine notice kiya ki hadbadi me chaabi mere haath ne thi, but scooter fir bhi start tha. Are bc 🤣😭.  Aaj laga ki shayad wo apna maan chuki hai mujhe. Mai is baar gaya to waha nahi thi. Fir mai pure highway par, rapti tak har ek auto ko dekhte hue gaya ki shyd kisi me mil jaye. Par naa. Waapsi me bhi nahi. Aaj bahut zyada dukh ho raha hai. Aisa kab tak chalega. Ab mai to roz roz nhi aa paunga na yr. Kaafi upset hu ye likhte hue. Keep notes ki limit khatam hui to socha ek website bana du iske liye. Hamesha ke liye yaad rahega. ❤️`,
+        },{
+            date: "January 15, 2024",
+            title: "The First Hello",
+            content: `TEXT`,
+        },
+    
+    ];
+
+        // ─── ─── ─── ─── ─── ─── ─── ─── ─── ─── ─── ─── ─── ─── ───
+        //  ✏️ END OF STORY EDITING — DON'T CHANGE ANYTHING BELOW THIS LINE
+        // ─── ─── ─── ─── ─── ─── ─── ─── ─── ─── ─── ─── ─── ─── ───
+
+        /* ═══════════════════════════════════════════════════════════════
+           ⚙️  JAVASCRIPT — ALL THE MAGIC HAPPENS HERE
+           ═══════════════════════════════════════════════════════════════ */
+
+        // ─── DOM Elements ───
+        const passwordOverlay = document.getElementById('password-overlay');
+        const passwordInput = document.getElementById('password-input');
+        const passwordSubmit = document.getElementById('password-submit');
+        const passwordError = document.getElementById('password-error');
+        const mainContent = document.getElementById('main-content');
+        const storiesContainer = document.getElementById('stories-container');
+        const totalStoriesEl = document.getElementById('total-stories');
+        const backToTopBtn = document.getElementById('back-to-top');
+        const heroTitleEl = document.getElementById('hero-title');
+        const heroSubtitleEl = document.getElementById('hero-subtitle');
+        const footerTextEl = document.getElementById('footer-text');
+        const floatingHeartsContainer = document.getElementById('floating-hearts-container');
+
+        // ─── Apply Custom Configuration ───
+        heroTitleEl.textContent = HERO_TITLE;
+        heroSubtitleEl.textContent = HERO_SUBTITLE;
+        footerTextEl.textContent = FOOTER_TEXT;
+        totalStoriesEl.textContent = loveStories.length;
+
+        // ─── Password Protection ───
+        function checkPassword() {
+            const entered = passwordInput.value.trim();
+            if (entered === YOUR_PASSWORD) {
+                passwordOverlay.classList.add('hidden');
+                mainContent.classList.add('visible');
+                passwordError.classList.remove('show');
+                startFloatingHearts();
+                startCanvasAnimation();
+                renderStories();
+                // Focus on main content after unlock
+                setTimeout(() => {
+                    document.body.style.overflow = 'auto';
+                    passwordOverlay.style.display = 'none';
+                }, 800);
+            } else {
+                passwordError.classList.add('show');
+                passwordInput.value = '';
+                passwordInput.focus();
+                // Shake animation
+                passwordInput.style.animation = 'none';
+                void passwordInput.offsetWidth;
+                passwordInput.style.animation = 'shake 0.5s ease';
+            }
+        }
+
+        // Add shake animation dynamically
+        const shakeStyle = document.createElement('style');
+        shakeStyle.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                20% { transform: translateX(-10px); }
+                40% { transform: translateX(10px); }
+                60% { transform: translateX(-6px); }
+                80% { transform: translateX(6px); }
+            }
+        `;
+        document.head.appendChild(shakeStyle);
+
+        passwordSubmit.addEventListener('click', checkPassword);
+        passwordInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') checkPassword();
+        });
+        // Prevent body scroll when locked
+        document.body.style.overflow = 'hidden';
+
+        // ─── Render Story Cards ───
+        function renderStories() {
+            storiesContainer.innerHTML = '';
+            loveStories.forEach((story, index) => {
+                const card = document.createElement('div');
+                card.className = 'story-card';
+                card.style.animationDelay = `${0.15 + index * 0.15}s`;
+
+                // Timeline node
+                const node = document.createElement('div');
+                node.className = 'timeline-node';
+
+                // Story number
+                const number = document.createElement('span');
+                number.className = 'story-number';
+                number.textContent = `No. ${String(index + 1).padStart(2, '0')}`;
+
+                // Date badge
+                const dateBadge = document.createElement('span');
+                dateBadge.className = 'story-date-badge';
+                dateBadge.textContent = `✦ ${story.date} ✦`;
+
+                // Title
+                const title = document.createElement('h3');
+                title.className = 'story-title';
+                title.textContent = story.title;
+
+                // Quote mark
+                const quoteMark = document.createElement('div');
+                quoteMark.className = 'story-quote-mark';
+                quoteMark.textContent = '"';
+
+                // Content
+                const content = document.createElement('div');
+                content.className = 'story-content';
+                content.textContent = story.content;
+
+                // Heart icon at bottom
+                const heartIcon = document.createElement('div');
+                heartIcon.className = 'story-heart-icon';
+                heartIcon.textContent = '♥';
+
+                // Assemble card
+                card.appendChild(node);
+                card.appendChild(number);
+                card.appendChild(dateBadge);
+                card.appendChild(title);
+                card.appendChild(quoteMark);
+                card.appendChild(content);
+                card.appendChild(heartIcon);
+
+                storiesContainer.appendChild(card);
+            });
+
+            // Re-trigger animations after render
+            requestAnimationFrame(() => {
+                document.querySelectorAll('.story-card').forEach((card, i) => {
+                    card.style.animation = 'none';
+                    void card.offsetWidth;
+                    card.style.animation = `card-appear 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) ${0.15 + i * 0.15}s forwards`;
+                });
+            });
+        }
+
+        // ─── Canvas Star Field ───
+        const canvas = document.getElementById('star-canvas');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+        let canvasAnimationStarted = false;
+
+        function initCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        function generateStars() {
+            stars = [];
+            const starCount = Math.min(300, Math.floor(window.innerWidth / 3));
+            for (let i = 0; i < starCount; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 1.5 + 0.3,
+                    baseOpacity: Math.random() * 0.5 + 0.3,
+                    twinkleSpeed: Math.random() * 0.015 + 0.005,
+                    twinkleOffset: Math.random() * Math.PI * 2,
+                    driftX: (Math.random() - 0.5) * 0.06,
+                    driftY: (Math.random() - 0.5) * 0.04,
+                });
+            }
+        }
+
+        function drawStars(time) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw a subtle gradient background
+            const gradient = ctx.createRadialGradient(
+                canvas.width * 0.5, canvas.height * 0.4, 0,
+                canvas.width * 0.5, canvas.height * 0.4, canvas.width * 0.8
+            );
+            gradient.addColorStop(0, 'rgba(20, 18, 40, 0.4)');
+            gradient.addColorStop(0.5, 'rgba(10, 10, 20, 0.2)');
+            gradient.addColorStop(1, 'rgba(5, 5, 12, 0)');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw stars
+            stars.forEach(star => {
+                const twinkle = Math.sin(time * star.twinkleSpeed + star.twinkleOffset) * 0.25 + 0.75;
+                const opacity = star.baseOpacity * twinkle;
+                const x = star.x + Math.sin(time * 0.01 + star.twinkleOffset) * 0.5;
+                const y = star.y + Math.cos(time * 0.008 + star.twinkleOffset) * 0.3;
+
+                ctx.beginPath();
+                ctx.arc(x, y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+                ctx.fill();
+
+                // Draw a subtle glow for brighter stars
+                if (star.radius > 1) {
+                    ctx.beginPath();
+                    ctx.arc(x, y, star.radius * 3, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${opacity * 0.15})`;
+                    ctx.fill();
+                }
+            });
+
+            // Occasionally draw a shooting star
+            if (Math.random() < 0.002) {
+                drawShootingStar();
+            }
+        }
+
+        let shootingStars = [];
+
+        function drawShootingStar() {
+            const startX = Math.random() * canvas.width * 0.8;
+            const startY = Math.random() * canvas.height * 0.3;
+            const length = 80 + Math.random() * 60;
+            const angle = Math.PI / 4 + (Math.random() - 0.5) * 0.3;
+            const speed = 6 + Math.random() * 6;
+            shootingStars.push({
+                x: startX,
+                y: startY,
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed,
+                life: 1,
+                maxLife: 40 + Math.random() * 30,
+                length,
+                angle,
+            });
+        }
+
+        function drawShootingStars() {
+            shootingStars = shootingStars.filter(s => s.life > 0);
+            shootingStars.forEach(s => {
+                const alpha = Math.min(1, s.life * 3);
+                const tailX = s.x - Math.cos(s.angle) * s.length * (1 - s.life / s.maxLife);
+                const tailY = s.y - Math.sin(s.angle) * s.length * (1 - s.life / s.maxLife);
+
+                const gradient = ctx.createLinearGradient(s.x, s.y, tailX, tailY);
+                gradient.addColorStop(0, `rgba(255, 255, 240, ${alpha})`);
+                gradient.addColorStop(1, `rgba(255, 255, 240, 0)`);
+
+                ctx.beginPath();
+                ctx.moveTo(s.x, s.y);
+                ctx.lineTo(tailX, tailY);
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+
+                s.x += s.vx;
+                s.y += s.vy;
+                s.life -= 0.03;
+            });
+        }
+
+        function startCanvasAnimation() {
+            if (canvasAnimationStarted) return;
+            canvasAnimationStarted = true;
+            initCanvas();
+            generateStars();
+            let time = 0;
+
+            function animate() {
+                time++;
+                drawStars(time);
+                drawShootingStars();
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        window.addEventListener('resize', () => {
+            initCanvas();
+            generateStars();
+        });
+
+        // ─── Floating Hearts ───
+        function startFloatingHearts() {
+            const heartChars = ['♥', '♡', '❤', '💕', '✨'];
+            for (let i = 0; i < 8; i++) {
+                const heart = document.createElement('span');
+                heart.className = 'floating-heart';
+                heart.textContent = heartChars[Math.floor(Math.random() * heartChars.length)];
+                heart.style.left = `${Math.random() * 95}%`;
+                heart.style.fontSize = `${0.8 + Math.random() * 1.2}rem`;
+                heart.style.animationDuration = `${15 + Math.random() * 20}s`;
+                heart.style.animationDelay = `${Math.random() * 20}s`;
+                heart.style.opacity = '0';
+                floatingHeartsContainer.appendChild(heart);
+            }
+        }
+
+        // ─── Back to Top Button ───
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ─── Intersection Observer for Card Animations ───
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px',
+        });
+
+        // Observe cards after they're rendered
+        function observeCards() {
+            document.querySelectorAll('.story-card').forEach(card => {
+                observer.observe(card);
+            });
+        }
+
+        // Modify renderStories to also observe
+        const originalRenderStories = renderStories;
+        renderStories = function() {
+            originalRenderStories();
+            observeCards();
+        };
+
+        // ─── Auto-focus on password input ───
+        passwordInput.focus();
+
+        // ─── Keyboard shortcut: press '/' to open password input ───
+        document.addEventListener('keydown', (e) => {
+            if (e.key === '/' && !passwordOverlay.classList.contains('hidden')) {
+                e.preventDefault();
+                passwordInput.focus();
+            }
+        });
+
+        // ─── Console welcome message ───
+        console.log('%c♥ Our Love Story ♥', 'font-size: 24px; color: #d4a574; font-family: cursive;');
+        console.log('%cA private journal of precious memories.', 'font-size: 14px; color: #c4b5a0; font-style: italic;');
+        console.log('%c✏️ To edit your stories, open this file and look for the "YOUR STORY ENTRIES" section in the JavaScript.', 'font-size: 12px; color: #e8b4b8;');
+
+        // ─── Initial render (will show after password unlock) ───
+        // We render stories only after password is entered to keep privacy
+        console.log('❤️ Ready — enter your password to view your love story.');
+    </script>
+</body>
+</html>
